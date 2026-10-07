@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Portfolio</title>
+<style>
+:root{--bg:#0b0d1a;--card:#161a33;--text:#e8eaff;--muted:#9aa0c8;--a:#7c5cff;--b:#00d4ff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.35;z-index:-1;animation:float 12s ease-in-out infinite}
+.o1{width:380px;height:380px;background:var(--a);top:-80px;left:-80px}
+.o2{width:320px;height:320px;background:var(--b);bottom:-60px;right:-60px;animation-delay:-6s}
+@keyframes float{50%{transform:translateY(40px) scale(1.1)}}
+nav{position:sticky;top:0;z-index:10;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;padding:14px;background:rgba(11,13,26,.8);backdrop-filter:blur(10px)}
+nav a{color:var(--muted);text-decoration:none;font-weight:600;transition:.2s}
+nav a:hover{color:var(--b)}
+section{max-width:1050px;margin:auto;padding:80px 20px}
+h2{font-size:2rem;margin-bottom:30px;text-align:center;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+h3{margin:30px 0 16px;color:var(--b)}
+.hero{text-align:center;min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;perspective:900px}
+.hero h1{font-size:clamp(2rem,6vw,3.6rem);margin-bottom:8px}
+.hero .tag{letter-spacing:4px;text-transform:uppercase;color:var(--muted);font-size:.9rem}
+.photo{width:150px;height:190px;object-fit:cover;border-radius:14px;margin:26px 0;border:3px solid var(--a);box-shadow:0 20px 50px rgba(124,92,255,.5);animation:spin3d 8s ease-in-out infinite}
+@keyframes spin3d{0%,100%{transform:rotateY(-18deg)}50%{transform:rotateY(18deg)}}
+.hero h2{margin:0;font-size:1.4rem}
+.btn{display:inline-block;margin-top:22px;padding:12px 28px;border:0;border-radius:30px;background:linear-gradient(90deg,var(--a),var(--b));color:#fff;font-weight:700;text-decoration:none;cursor:pointer;font-size:1rem;box-shadow:0 10px 25px rgba(0,212,255,.3);transition:.2s}
+.btn:hover{transform:translateY(-3px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;perspective:1000px}
+.card{background:var(--card);border-radius:16px;padding:20px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.45);transition:transform .15s ease-out;transform-style:preserve-3d;border:1px solid rgba(255,255,255,.06)}
+.card img{width:100%;height:150px;object-fit:cover;border-radius:10px;margin-bottom:12px;background:#222850}
+.card img.icon{width:100%;max-width:200px;height:200px;object-fit:contain;background:none;margin:0 auto 12px;display:block}
+.card h4{font-size:1.1rem;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.92rem}
+.about{display:flex;gap:36px;align-items:center;flex-wrap:wrap;justify-content:center}
+.about img{width:260px;height:300px;object-fit:cover;border-radius:18px;box-shadow:0 25px 50px rgba(124,92,255,.4);transform:rotateY(-10deg);background:#222850}
+.about p{flex:1;min-width:260px;color:var(--muted);font-size:1.05rem}
+.chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.chip{padding:10px 20px;border-radius:30px;background:var(--card);border:1px solid var(--a);font-weight:600}
+.edu{max-width:560px;margin:auto}
+.edu h4{color:var(--b);font-size:1.2rem}
+form{max-width:520px;margin:auto;display:flex;flex-direction:column;gap:14px}
+input,textarea{padding:13px;border-radius:10px;border:1px solid #2a3060;background:var(--card);color:var(--text);font:inherit}
+input:focus,textarea:focus{outline:2px solid var(--a)}
+.links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.links a{color:var(--b);text-decoration:none;font-weight:600}
+.links a:hover{text-decoration:underline}
+footer{text-align:center;padding:24px;color:var(--muted);font-size:.9rem}
+
+/* ---------- Save as PDF / Print fix ---------- */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;animation:none!important;transition:none!important}
+  :root{--bg:#fff;--card:#f1f3ff;--text:#111;--muted:#333;--a:#5b3fe0;--b:#0077aa}
+  html,body{background:#fff!important;color:#111!important}
+  .orb,nav,.btn,form{display:none!important}
+  /* gradient text and dark theme vanish in PDF, so use solid dark colours */
+  h2{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#5b3fe0!important;-webkit-text-fill-color:#5b3fe0!important}
+  h1,.card h4{color:#111!important}
+  h3,.edu h4,.links a{color:#0077aa!important}
+  .hero .tag,.card p,.about p,footer{color:#333!important}
+  .hero{min-height:auto;padding:30px 20px}
+  section{padding:30px 20px;break-inside:avoid-page}
+  .card,.chip,.about img,.photo{transform:none!important;box-shadow:none!important;border:1px solid #bbb!important;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="orb o1"></div><div class="orb o2"></div>
+
+<nav>
+  <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a>
+  <a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <p class="tag">My Portfolio</p>
+  <h1>Mita maji</h1>
+  <!-- Replace images/photo.jpg with your passport-size photo -->
+  <img class="photo" src="photo.jpeg" alt="Passport size photo" onerror="this.src=ph('Photo')">
+  <h2> Currently Geography Undergraduate  Student &amp; Web Developer</h2>
+  <a href="#contact" class="btn">Contact Me</a>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about">
+    <img src="about.jpeg" alt="About me" onerror="this.src=ph('About')">
+    <p>Hi, I'm a geography student who loves building things for the web. I combine spatial thinking and research skills with HTML, CSS and JavaScript to create clean, creative and useful projects.</p>
+    <p> I am continuously learning new technologies and improving my problem -solving, analytical, and research abilities.My goal is to build innovative solutions in the field of data science ,AI and geospatial technology while contributing to impactful projects and professional growth.</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2>My Skills</h2>
+  <h3>Web Development</h3>
+  <div class="grid">
+    <div class="card tilt"><img class="icon" src="html.jpeg" alt="HTML" onerror="this.src=ph('HTML')"><h4>HTML</h4></div>
+    <div class="card tilt"><img class="icon" src="css.jpeg" alt="CSS" onerror="this.src=ph('CSS')"><h4>CSS</h4></div>
+    <div class="card tilt"><img class="icon" src="js.jpeg" alt="JavaScript" onerror="this.src=ph('JS')"><h4>JavaScript</h4></div>
+  </div>
+  <h3>Geography</h3>
+  <div class="chips">
+    <span class="chip">Spatial Thinking</span><span class="chip">Mapping</span>
+    <span class="chip">Research</span><span class="chip">Reporting</span>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>My Projects</h2>
+  <div class="grid">
+    <div class="card tilt"><img src="portfolio.jpeg" alt="My Portfolio" onerror="this.src=ph('Portfolio')"><h4>My Portfolio</h4><p>This personal website.</p><a class="btn" href="https://share.google/es23EdNj9D5fmLM2r" target="_blank">View Project</a></div>
+    <div class="card tilt"><img src="weather.jpeg" alt="Weather app" onerror="this.src=ph('Weather')"><h4>Weather App</h4><p>Live weather for any city.</p><a class="btn" href="https://maji02445-max.github.io/Weather-/" target="_blank">View Project</a></div>
+    <div class="card tilt"><img src="snake.jpeg" alt="Snake game" onerror="this.src=ph('Snake')"><h4>Snake Game</h4><p>Classic snake built with JS.</p><a class="btn" href="https://maji02445-max.github.io/Snake-game-/" target="_blank">View Project</a></div>
+    <div class="card tilt"><img src="temple.jpeg" alt="Temple Runner game" onerror="this.src=ph('Temple Runner')"><h4>Temple Runner</h4><p>Endless runner game.</p><a class="btn" href="https://maji02445-max.github.io/Temple-Runner-Game/" target="_blank">View Project</a></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <h2>My Education</h2>
+  <div class="card tilt edu">
+    <h4>Geography</h4>
+    <p> Panskura Banamali College (autonomous) Under Vidyasagar University</p>
+    <p>2024 – Present</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Me</h2>
+  <form id="cf">
+    <input id="n" placeholder="Your name" required>
+    <input id="e" type="email" placeholder="Your email" required>
+    <textarea id="m" rows="5" placeholder="Your message" required></textarea>
+    <button class="btn" type="submit">Send Message</button>
+  </form>
+  <div class="links">
+    <a href="mailto:maji02445@gmail.com">✉maji02445@gmail.com</a>
+    <a href="https://https://github.com/maji02445-max" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/mita-maji-0431b543b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</section>
+
+<footer>© 2026 Your Name. All rights reserved.</footer>
+
+<script>
+// Placeholder image shown until you add your own pictures
+function ph(t){
+  return 'data:image/svg+xml;utf8,'+encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200"><rect width="100%" height="100%" fill="#222850"/><text x="50%" y="50%" fill="#9aa0c8" font-family="sans-serif" font-size="22" text-anchor="middle" dominant-baseline="middle">'+t+'</text></svg>');
+}
+// 3D tilt effect on cards
+document.querySelectorAll('.tilt').forEach(c=>{
+  c.addEventListener('mousemove',ev=>{
+    const r=c.getBoundingClientRect();
+    const x=(ev.clientX-r.left)/r.width-.5, y=(ev.clientY-r.top)/r.height-.5;
+    c.style.transform='rotateY('+(x*18)+'deg) rotateX('+(-y*18)+'deg) translateZ(10px)';
+  });
+  c.addEventListener('mouseleave',()=>c.style.transform='');
+});
+// Contact form opens your email app
+document.getElementById('cf').addEventListener('submit',ev=>{
+  ev.preventDefault();
+  const n=encodeURIComponent(document.getElementById('n').value);
+  const e=document.getElementById('e').value;
+  const m=encodeURIComponent(document.getElementById('m').value+'\n\nFrom: '+e);
+  location.href='mailto:youremail@example.com?subject=Message from '+n+'&body='+m;
+});
+</script>
+</body>
+                                                                                                                             </html>
